@@ -29,7 +29,7 @@ def preprocess_image(image, target_size):
 print(" * Loading Keras model...")
 
 get_model()
-@app.route("/", methods=["POST"])
+@app.route("/predict", methods=["POST"])
 def predict():
     message = request.get_json(force=True)
     encoded = message['image']
@@ -41,13 +41,22 @@ def predict():
 
     response = {
         'prediction': {
-            'dog': prediction[0][0],
-            'cat': prediction[0][1]
+            'airplane': prediction[0][0],
+            'automobile': prediction[0][1],
+            'bird': prediction[0][2],
+            'cat': prediction[0][3],
+            'deer': prediction[0][4],
+            'dog': prediction[0][5],
+            'frog': prediction[0][6],
+            'horse': prediction[0][7],
+            'ship': prediction[0][8],
+            'truck': prediction[0][9]
         }
     }
     return jsonify(response)
 
 
 if __name__ == '__main__':
+	app.run(host="0.0.0.0")
 
 
